@@ -1,4 +1,4 @@
-name: Deploy Jupyter Book
+name: Deploy MyST site
 
 on:
   push:
@@ -14,22 +14,29 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v4
+      - name: Checkout repository
+        uses: actions/checkout@v4
 
-      - uses: actions/setup-python@v5
+      - name: Install Node
+        uses: actions/setup-node@v4
         with:
-          python-version: "3.11"
+          node-version: 20
 
-      - run: pip install jupyter-book
+      - name: Install MyST
+        run: npm install -g mystmd
 
-      - run: jupyter-book build .
+      - name: Build site
+        run: myst build
 
-      - uses: actions/upload-pages-artifact@v3
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v3
         with:
           path: _build/html
 
   deploy:
     needs: build
     runs-on: ubuntu-latest
+
     steps:
-      - uses: actions/deploy-pages@v4
+      - name: Deploy to GitHub Pages
+        uses: actions/deploy-pages@v4
