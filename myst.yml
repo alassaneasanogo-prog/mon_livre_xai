@@ -1,15 +1,13 @@
-# See docs at: https://mystmd.org/guide/frontmatter
 version: 1
+
 project:
-  id: 08978728-436f-4e27-a66e-ff05db47a1c7
-  # title:
-  # description:
-  # keywords: []
-  # authors: []
-  # github:
-  # To autogenerate a Table of Contents, run "jupyter book init --write-toc"
+  title: Mon Livre XAI
+  description: Livre sur l'Explainable AI
+  authors:
+    - Alassane Sanogo
+
 site:
   template: book-theme
-  # options:
-  #   favicon: favicon.ico
-  #   logo: site_logo.png
+
+toc:
+  - file: content/index.md
